@@ -1,34 +1,72 @@
-function log(){
-    document.getElementById("login").innerHTML = document.getElementById("nome").value;
+function login() {
+  document.getElementById("login").innerHTML = document.getElementById("nome").value;
+}
+
+function preco(unidade) {
+  var prodarroz = parseInt(document.getElementById("prodarroz").innerHTML);
+  var prodfeijao = parseInt(document.getElementById("prodfeijao").innerHTML);
+  var precoarroz = parseFloat(document.getElementById("precoarroz").innerHTML);
+  var precofeijao = parseFloat(document.getElementById("precofeijao").innerHTML);
+
+  switch (unidade) {
+      case '+1':
+          console.log('Mais unidades no produto 1');
+          document.getElementById("prodarroz").innerHTML = ++prodarroz;
+          document.getElementById("precoarroz").innerHTML = precoarroz + 6.00;
+
+          break;
+
+      case '+2':
+          console.log('Mais unidades no produto 2');
+          document.getElementById("prodfeijao").innerHTML = ++prodfeijao;
+          document.getElementById("precofeijao").innerHTML = precofeijao + 7.00;
+
+          break;
+      case '-1':
+          console.log('Menos unidades no produto 1');
+          if (prodarroz > 1) {
+              document.getElementById("prodarroz").innerHTML = --prodarroz;
+              document.getElementById("precoarroz").innerHTML = precoarroz - 6.00;
+          }
+          break;
+      case '-2':
+          console.log('Menos unidades no produto 2');
+          if (prodfeijao > 1) {
+              document.getElementById("prodfeijao").innerHTML = --prodfeijao;
+              document.getElementById("precofeijao").innerHTML = precofeijao - 7.00;
+          }
+          break;
   }
+}
 
-  function prod(acao) {
-    var unidade1 = parseInt(document.getElementById("unidade1").innerHTML);
-    var preco1 = parseFloat(document.getElementById("preco1").innerHTML);
-    var unidade2 = parseInt(document.getElementById("unidade2").innerHTML);
-    var preco2 = parseFloat(document.getElementById("preco2").innerHTML);
+function remover(rem) {
+  if (rem == 'a1') {
+      let pai=document.getElementById("itema");
+      let filho=document.getElementById("proda");
 
-    switch(acao){
-            case 'a1':
-              document.getElementById("unidade1").innerHTML = unidade1 + 1;
-              document.getElementById("preco1").innerHTML = preco1 + 6.00;
-              break;
-            case 'f1':
-              document.getElementById("unidade1").innerHTML = unidade1 - 1;
-              document.getElementById("preco1").innerHTML = preco1 - 6.00;
+      pai.removeChild(filho);
 
-              break;
-            case 'a2':
-              document.getElementById("unidade2").innerHTML = unidade2 + 1;
-              document.getElementById("preco2").innerHTML = preco2 + 7.50;
-              break;
-            case 'f2':
-              document.getElementById("unidade2").innerHTML = ""+(unidade2 - 1);
-              document.getElementById("preco2").innerHTML = preco2 - 7.50;
-              break;
-        }
-  }
+      let para = document.createElement('p');
+      para.setAttribute("id", "aviso");
+      para.innerHTML = "Item removido com sucesso <hr>";
+      pai.appendChild(para);
+  }else{
+      let pai=document.getElementById("itemb");
+      let filho=document.getElementById("prodf");
 
-  function fim(){
-    window.location.href = window.location.href;
-  }
+      pai.removeChild(filho);
+
+      let para = document.createElement('p');
+      para.setAttribute("id", "aviso");
+      para.innerHTML = "Item removido com sucesso<hr>";
+      pai.appendChild(para);   
+    }
+ 
+ 
+    }
+
+function finalizar() {
+  document.location.reload(true);
+}
+
+
